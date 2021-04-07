@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# Release Version - examples latset or 4.7.3
+# View tags in web browser - https://quay.io/repository/openshift-release-dev/ocp-release
+export RELEASE=4.7.4
+export BUILDNUMBER=$(curl -s https://mirror.openshift.com/pub/openshift-v4/clients/ocp/${RELEASE}/release.txt | grep 'Name:' | awk '{print $NF}')
+export RHCOS=$(echo $BUILDNUMBER | awk -F. '{print $1"."$2}')
+export CLIENT="openshift-client-linux.tar.gz"
+export INSTALLER="openshift-install-linux.tar.gz"
+
+
+export BASE_DOMAIN=okd.local
+export HOST_SHORT=$(hostname -s)
+export REG_CERT_SUBJ="/C=US/ST=NC/L=Raleigh/O=GCS/CN=${HOST_SHORT}.${BASE_DOMAIN}"
+
+
+export PULL_SECRET=
+export UPSTREAM_REGISTRY=quay.io
+export PRODUCT_REPO=openshift-release-dev
+export RELEASE_NAME=ocp-release
+export OCP_RELEASE=4.7.4-x86_64
+export LOCAL_REGISTRY=$(hostname):5000
+export LOCAL_SECRET_JSON=~/pull-secret-2.json
+export SECRET=$(echo -n "admin:redhat" | base64 -w0)
+export OPENSHIFT_MAJOR_RELEASE="4.7"
+export OS_ARCH="linux/amd64"
+export CATALOG_BUILD_VERSION="v1"
