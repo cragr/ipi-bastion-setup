@@ -9,10 +9,10 @@ GODEBUG=x509ignoreCN=0 oc adm -a ${LOCAL_SECRET_JSON} catalog build \
 --appregistry-org redhat-operators \
 --from=registry.redhat.io/openshift4/ose-operator-registry:v${OPENSHIFT_MAJOR_RELEASE} \
 --filter-by-os=${OS_ARCH} \
---to=$(hostname):5000/olm/redhat-operators:${CATALOG_BUILD_VERSION}i
+--to=$(hostname):5000/olm/redhat-operators:${CATALOG_BUILD_VERSION}
 
 # Mirror the Red Hat Operators Catalog 
 GODEBUG=x509ignoreCN=0 oc adm -a ${LOCAL_SECRET_JSON} catalog mirror \
-$(hostname):5000/olm/redhat-operators:${CATALOG_BUILD_VERSION}i \
+$(hostname):5000/olm/redhat-operators:${CATALOG_BUILD_VERSION} \
 $(hostname):5000 \
 --index-filter-by-os=${OS_ARCH}
